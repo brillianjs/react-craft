@@ -2,22 +2,38 @@ import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo.svg?react";
 import Button from "./Button";
 import Input from "./Input";
+import { useState, useEffect } from "react";
 
 const Topbar = ({ onLoginButtonClick }) => {
+  const [isTop, setIsTop] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrolled = window.scrollY;
+      if (scrolled > 0) {
+        setIsTop(false);
+      } else {
+        setIsTop(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
-    <div className="w-full">
+    <div className={`w-full  bg-white drop-shadow-lg`}>
       <div className="flex justify-center items-center py-2 bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%">
         <p className="text-white text-sm">
           Empowering Innovation, Crafting Experiences: React Builder – Where
           Ideas Transform into Seamless Realities.💎
         </p>
       </div>
-      <div className="py-4 drop-shadow-xl bg-white px-6 sticky top-0">
+      <div className="py-4 drop-shadow-xl  px-6 sticky top-0">
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex flex-row justify-center items-center">
-            <div className="w-7 rotate-12">
-              <Logo />
-            </div>
             <h1 className="text-teal-500 uppercase text-lg font-bold flex flex-col">
               ReactCraft
               <span className="font-light capitalize text-gray-500 text-sm">
