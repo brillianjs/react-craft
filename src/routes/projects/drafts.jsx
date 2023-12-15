@@ -1,14 +1,8 @@
-import Button from "../../components/Button";
-import { FiPlus } from "react-icons/fi";
-
-const Recents = ({ onAddProjects }) => {
+const Drafts = () => {
   return (
     <div className="w-full flex flex-col space-y-7">
       <div className="w-full flex flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-700">Recents Projects</h1>
-        <Button icon={<FiPlus />} onClick={onAddProjects}>
-          Add Projects
-        </Button>
+        <h1 className="text-3xl font-bold text-gray-700">Drafts Projects</h1>
       </div>
       <div className="w-full border border-b-0"></div>
       <div className="w-full">
@@ -20,4 +14,4 @@ const Recents = ({ onAddProjects }) => {
   );
 };
 
-export default Recents;
+export default Drafts;

@@ -1,32 +1,33 @@
 import { Tab } from "@headlessui/react";
-import Recent from "./Recent";
+import { FiClock, FiEdit, FiTrash2, FiCheckCircle } from "react-icons/fi";
 
 const Sidebar = () => {
-  const TabName = ["Recent", "Drafts", "Trash", "Posted"];
+  const menu = [
+    { name: "Recents", icon: <FiClock /> },
+    { name: "Drafts", icon: <FiEdit /> },
+    { name: "Trash", icon: <FiTrash2 /> },
+    { name: "Posted", icon: <FiCheckCircle /> },
+  ];
+
   return (
-    <div className="h-screen w-full bg-yellow-500">
-      <Tab.Group>
-        <div className="w-full h-full space-x-6 flex flex-row bg-white">
-          <Tab.List className="flex flex-col space-y-10 border border-gray-600/20 py-8 px-10 bg-white p-1 drop-shadow-lg">
-            {TabName.map((item, index) => (
-              <Tab
-                key={index}
-                className="ring-white/60 ring-offset ring-offset-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:rounded-lg focus:bg-blue-400 focus:text-white px-6 py-2"
-              >
-                {item}
-              </Tab>
-            ))}
-          </Tab.List>
-          <Tab.Panels>
-            <Tab.Panel>
-              <Recent />
-            </Tab.Panel>
-            <Tab.Panel>Drafts</Tab.Panel>
-            <Tab.Panel>Trash</Tab.Panel>
-            <Tab.Panel>Posted</Tab.Panel>
-          </Tab.Panels>
-        </div>
-      </Tab.Group>
+    <div className="flex flex-col min-w-fit bg-white border-t-2 py-5 drop-shadow-xl min-h-screen px-5 space-y-5">
+      {menu.map((item, index) => (
+        <Tab.List key={index}>
+          <Tab
+            className={({ selected }) =>
+              `w-full flex flex-row justify-between text-gray-700  items-center px-10 py-3 rounded-lg cursor-pointer border-none outline-none ${
+                selected ? "bg-teal-500 text-white" : ""
+              }`
+            }
+          >
+            <div className="flex flex-row items-center space-x-3">
+              {item.icon}
+
+              <h1 className="text-lg font-semibold ">{item.name}</h1>
+            </div>
+          </Tab>
+        </Tab.List>
+      ))}
     </div>
   );
 };
